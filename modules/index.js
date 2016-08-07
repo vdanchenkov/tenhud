@@ -5,6 +5,10 @@ import { times, flatten } from 'ramda'
 import translateCommand from './translateCommand'
 import decodeChunk from './decodeChunk'
 import render from './renderTsumogiri'
+import { createStore, combineReducers } from 'redux'
+import { reducer as discardReducer } from './discard'
+
+const store = createStore(combineReducers({ discardReducer }))
 
 const displayTile = (tile) => {
   const kind = tile / 4 | 0
@@ -30,37 +34,13 @@ const listen = () => {
     if(tcpSession.dst.includes(':10080')) {
       console.log('Session is started');
       tcpSession.on("data send", (tcp_session, chunk) => {
-        //  console.log('-> ' + chunk)
+        decodeChunk(chunk).forEach(action => store.dispatch(action))
       });
-      const discards = [[], [], []]
       tcpSession.on("data recv", (tcp_session, chunk) => {
-        decodeChunk(chunk).map(translateCommand).forEach(action => {
-          console.log(action)
-          switch (action.type) {
-            case 'discard':
-              discards[action.player - 1].push({ tsumogiry: action.tsumogiry, tile: action.tile })
-              break;
-            case 'init':
-              discards[0] = []
-              discards[1] = []
-              discards[2] = []
-          }
-        })
-        // console.log(discards)
-        render({discards})
-      });
+        decodeChunk(chunk).forEach(action => store.dispatch(action))
+      })
     }
   })
 }
-
-const discardCoord = (index) => {
-  if (index < 6) {
-      return [index, 0]
-  } else if (index < 12) {
-    return [index % 6, 1]
-  } else {
-    return [index - 12, 2]
-  }
-}
-
+store.subscribe(() => console.log(store.getState()))
 listen()

@@ -17,6 +17,8 @@
     "http-proxy": "^1.14.0",
     "pcap": "git+https://github.com/mranney/node_pcap.git",
     "ramda": "^0.22.0",
+    "redux": "^3.5.2",
+    "seamless-immutable": "^6.1.1",
     "xml-parser": "^1.2.1"
   },
   "devDependencies": {
