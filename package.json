@@ -19,6 +19,7 @@
     "ramda": "^0.22.0",
     "redux": "^3.5.2",
     "seamless-immutable": "^6.1.1",
+    "terminal-kit": "^0.24.21",
     "xml-parser": "^1.2.1"
   },
   "devDependencies": {

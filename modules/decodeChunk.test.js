@@ -17,8 +17,4 @@ describe('decodeChunk', () => {
   it('parses attributes', () => {
     expect(decodeChunk('<init123 hai="123,543"/>')).to.eql([ { type: 'init', value: '123', hai: "123,543" } ])
   })
-
-  it('works', () => {
-    expect(decodeChunk('<D123/><U/><e133/><V/><f98/><W/><g27/><T35/>')).to.eql([])
-  })
 })
