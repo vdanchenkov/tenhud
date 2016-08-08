@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import chalk from 'chalk'
 import { createStore } from 'redux'
 import reducer from './reducer'

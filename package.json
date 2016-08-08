@@ -1,18 +1,25 @@
 {
   "name": "akagi",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "modules/index.js",
+  "main": "lib/index.js",
+  "bin": {
+    "akagi": "lib/index.js"
+  },
   "scripts": {
-    "start": "babel-node .",
-    "test": "mocha ./modules/**/*.test.js -r babel-polyfill -w --compilers js:babel-register"
+    "clean": "rimraf lib",
+    "start": "babel-node modules/index.js",
+    "test": "mocha ./modules/**/*.test.js -r babel-polyfill -w --compilers js:babel-register",
+    "compile": "babel -d lib modules",
+    "prepublish": "npm run clean && npm run compile"
   },
   "author": "Vladimir Danchenkov <vladimir.danchenkov@gmail.com>",
   "license": "MIT",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "babel-polyfill": "^6.13.0",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-stage-0": "^6.5.0",
     "chalk": "^1.1.3",
     "http-proxy": "^1.14.0",
     "pcap": "git+https://github.com/mranney/node_pcap.git",
@@ -23,7 +30,11 @@
     "xml-parser": "^1.2.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
-    "mocha": "^3.0.1"
+    "mocha": "^3.0.1",
+    "rimraf": "^2.5.4"
   }
 }
