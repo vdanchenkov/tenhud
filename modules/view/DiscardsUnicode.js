@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { KAMICHA, TOIMEN, SHIMOCHA } from './../constants'
 
-const suitSymbols =  '東西南北中發白'
+const suitSymbols =  '東南西北白發中'
 const digitSymbols = '１２３４５６７８９'
 
 const tileSymbol = (tile) => {
@@ -10,7 +10,7 @@ const tileSymbol = (tile) => {
   const number = kind % 9
 
   return suit === 0 ? chalk.red(digitSymbols[number]) :
-    suit === 1 ? digitSymbols[number] :
+    suit === 1 ? chalk.blue(digitSymbols[number]) :
     suit === 2 ? chalk.green(digitSymbols[number]):
     suitSymbols[number]
 }
