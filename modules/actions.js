@@ -6,4 +6,6 @@ export const TEDASHI_KAMICHA = 'e'
 export const TEDASHI_TOIMEN = 'f'
 export const TEDASHI_SHIMOCHA = 'g'
 
+export const PLAYER_DISCARD = 'D'
+
 export const INIT = 'INIT'
