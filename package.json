@@ -1,10 +1,10 @@
 {
-  "name": "akagi",
+  "name": "tenhud",
   "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
   "bin": {
-    "akagi": "lib/index.js"
+    "tenhud": "lib/index.js"
   },
   "scripts": {
     "clean": "rimraf lib",
@@ -15,6 +15,10 @@
   },
   "author": "Vladimir Danchenkov <vladimir.danchenkov@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vdanchenkov/tenhud.git"
+  },
   "files": [
     "lib"
   ],
