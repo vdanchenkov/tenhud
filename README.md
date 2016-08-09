@@ -17,4 +17,4 @@ tenhud
 
 and start regular tenhou game. I've tested it only with Flash client so far.
 
-![Screenshot](screen.png | =454x)
+![Screenshot](screen.png =454x)
