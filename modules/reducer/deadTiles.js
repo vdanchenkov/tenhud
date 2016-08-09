@@ -5,7 +5,9 @@ import {
   TEDASHI_KAMICHA,
   TEDASHI_TOIMEN,
   TEDASHI_SHIMOCHA,
+  PLAYER_TAKE,
   PLAYER_DISCARD,
+  DORA,
   INIT
 } from './../actions'
 
@@ -23,9 +25,10 @@ export default (state = Immutable({}), action) => {
   case TEDASHI_KAMICHA:
   case TEDASHI_TOIMEN:
   case TEDASHI_SHIMOCHA:
-      return state.set(action.value, true)
-  case PLAYER_DISCARD:
-      return action.value ? state.set(action.value, true) : state
+  case PLAYER_TAKE:
+    return state.set(action.value, true)
+  case DORA:
+    return state.set(action.hai, true)
   case INIT:
     const initState = {}
     action.hai.split(',').forEach(tile => initState[tile] = true)
