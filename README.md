@@ -3,12 +3,15 @@
 ## Installation
 
 ```
+npm install -g node-gyp
 npm install -g tenhud
 ```
 
 You’ll need to have Node on your machine. We recommend to use Node >= 6 and npm >= 3. You can use [nvm](https://github.com/creationix/nvm#usage) to get it and easily switch between versions.
 
-I've tested it only with Flash web client on OS X so far. Feel free to contact me if you have issues with other platforms.
+You'll need libpcap installed. Most OSX machines seem to have it. All major Linux distributions have it available either by default or with a package like libpcap-dev. Refer to [pcap](https://github.com/mranney/node_pcap) if you have problems with installation.
+
+I've tested it only with Flash web client on OS X so far.
 
 ## Motivation
 
