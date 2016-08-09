@@ -17,4 +17,4 @@ tenhud
 
 and start regular tenhou game. I've tested it only with Flash client so far.
 
-![Screenshot](screen.png){:height="454px"}
+<img src="screen.png" width="454" alt="Screenshot of the app"/>
