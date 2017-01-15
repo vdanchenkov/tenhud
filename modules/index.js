@@ -1,27 +1,39 @@
-#!/usr/bin/env node
+import { app, BrowserWindow } from 'electron'
+import path from 'path'
+import url from 'url'
 
-import chalk from 'chalk'
-import { createStore } from 'redux'
-import reducer from './reducer'
-import { terminal } from 'terminal-kit'
-import listen from './listen'
-import DiscardsUnicode from './view/DiscardsUnicode'
-import KnownTiles from './view/KnownTiles'
-import HiddenTiles from './view/HiddenTiles'
-import HiddenTilesMap from './view/HiddenTilesMap'
-import CommandLog from './view/CommandLog'
+let mainWindow
 
-const store = createStore(reducer)
+function createWindow () {
+  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'index.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
 
-const printAt = (baseX, baseY) => (x, y, string) => terminal.moveTo(x + 1 + baseX, y + 1 + baseY, string)
+  mainWindow.webContents.openDevTools()
 
-store.subscribe(() => {
-  terminal.clear()
-  DiscardsUnicode(printAt(0, 0), store.getState().discards)
-  // KnownTiles(printAt(0, 5), store.getState().deadTiles)
-  // HiddenTiles(printAt(28, 5), store.getState().deadTiles)
-  HiddenTilesMap(printAt(0, 5), store.getState().deadTiles)
-  //CommandLog(printAt(0, 15), store.getState().log)
+  mainWindow.on('closed', function () {
+    mainWindow = null
+  })
+}
+
+app.on('ready', createWindow)
+
+// Quit when all windows are closed.
+app.on('window-all-closed', function () {
+  // On OS X it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
 })
 
-listen(store)
+app.on('activate', function () {
+  // On OS X it's common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
+  if (mainWindow === null) {
+    createWindow()
+  }
+})

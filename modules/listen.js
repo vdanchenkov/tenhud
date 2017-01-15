@@ -1,8 +1,9 @@
 import http from 'http'
 import pcap from 'pcap'
 import decodeChunk from './decodeChunk'
+import translateCommand from './translateCommand'
 
-export default (store) => {
+export default (dispatch) => {
   const session = pcap.createSession('', 'ip proto \\tcp')
   const tracker = new pcap.TCPTracker()
   console.log("Listening on " + session.device_name)
@@ -15,7 +16,8 @@ export default (store) => {
     if(tcpSession.dst.includes(':10080')) {
       console.log('Session is started');
       const handle = (tcp_session, chunk) => {
-        decodeChunk(chunk).forEach(action => store.dispatch(action))
+        const result = []
+        decodeChunk(chunk).map(translateCommand).filter(item => item !== undefined).forEach(dispatch)
       }
       tcpSession.on("data send", handle);
       tcpSession.on("data recv", handle)
