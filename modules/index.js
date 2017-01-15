@@ -1,18 +1,26 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, default as electron } from 'electron'
 import path from 'path'
 import url from 'url'
 
 let mainWindow
 
 function createWindow () {
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  const display = electron.screen.getPrimaryDisplay().workAreaSize
+
+  mainWindow = new BrowserWindow({
+    width: 400,
+    height: 600,
+    x: display.width - 400,
+    y: (display.height - 600) / 2 | 0,
+    alwaysOnTop: true
+  })
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
   }))
 
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed', function () {
     mainWindow = null
