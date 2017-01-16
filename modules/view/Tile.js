@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const getImg = (tile) => {
   const type = tile / 4 | 0
@@ -13,13 +13,13 @@ const getImg = (tile) => {
 }
 
 const Tile = styled.div`
-  display: inline-block;
-  width: 30px;
-  height: 40px;
+  width: ${props => props.width || 30}px;
+  height: ${props => props.height || 40}px;
   background-position: center, center;
   background-image: url(tile-images/${props => getImg(props.tile)}.svg), url(tile-images/front.svg);
   background-repeat: no-repeat, no-repeat;
-  background-size: 27px 37px, 29px 39px;
+  background-size: ${props => (props.width || 30) - 2}px ${props => (props.height || 40) - 2}px,
+                   cover;
 `
 
 export default Tile

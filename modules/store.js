@@ -14,7 +14,6 @@ class Store {
         visible.push(move.tile)
       }
     })
-    console.log(visible.join('|'))
     return visible
   }
 }

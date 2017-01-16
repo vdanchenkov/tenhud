@@ -17,7 +17,6 @@ const Log = observer(
 
 ReactDOM.render(
   <div>
-    <h1>Hello, world!</h1>
     {/* <Log store={store}/> */}
     <VisibleTiles store={store}/>
   </div>,
