@@ -29,7 +29,7 @@ const range = (limit) => new Array(limit).fill(0).map((_, i) => i)
 
 const getLevel = (tiles, tile) => {
   let count = 0
-  for (var i = tile; i < tile + 3; i++) {
+  for (var i = tile; i < tile + 4; i++) {
     if (tiles.find(x => x === i)) {
       count++
     }
@@ -43,7 +43,7 @@ const VisibleTiles = ({ store }) => (
     <Field>
       { range(4).map(suit => (
         <Row key={suit}>
-        { range(8).map(digit => {
+        { range(suit == 3 ? 7 : 9).map(digit => {
           const type = digit + suit * 9;
           const level = getLevel(store.visibleTiles, type * 4)
           return (

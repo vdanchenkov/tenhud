@@ -1,8 +1,11 @@
 export default (command) => {
   const { type, value, hai } = command
   switch (type) {
-    case 'INIT':
-      return { type: 'new_game' }
+    case 'INIT': {
+      const hand = command.hai.split(',')
+      const dora = command.seed.split(',').pop()
+      return { type: 'start', hand, dora }
+    }
     case 'DORA':
       return { type: 'dora', tile: +hai }
     case 'E':
@@ -21,5 +24,7 @@ export default (command) => {
       return value ? { type: 'discard', player: 0, tile: +value } : undefined
     case 'T':
       return { type: 'take', tile: +value }
+    default:
+      console.warn(command)
   }
 }
