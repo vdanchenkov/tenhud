@@ -33,6 +33,16 @@ class Store {
     })
     return visible
   }
+
+  @computed get discards() {
+    const discards = [[], [], [], []]
+    this.moves.forEach(move => {
+      if (move.type === 'discard' && move.player > 0) {
+        discards[move.player].push({ tsumogiri: move.tsumogiri, tile: move.tile })
+      }
+    })
+    return discards
+  }
 }
 
 const store = new Store()

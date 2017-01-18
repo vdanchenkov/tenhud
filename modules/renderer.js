@@ -5,6 +5,7 @@ import { observer } from "mobx-react"
 import listen from './listen'
 import store from './store'
 import VisibleTiles from './view/VisibleTiles'
+import Discards from './view/Discards'
 
 listen(move => store.addMove(move))
 
@@ -17,7 +18,7 @@ const Log = observer(
 
 ReactDOM.render(
   <div>
-    {/* <Log store={store}/> */}
+    <Discards store={store}/>
     <VisibleTiles store={store}/>
   </div>,
   document.getElementById('root')
