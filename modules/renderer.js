@@ -23,3 +23,7 @@ ReactDOM.render(
   </div>,
   document.getElementById('root')
 )
+
+process.on('uncaughtException', (err) => {
+  console.error(err)
+})
