@@ -68,5 +68,4 @@ const VisibleTiles = ({ store }) => (
   </div>
 )
 
-//store.visibleTiles.find(x => x === tile)
 export default observer(VisibleTiles)

@@ -16,7 +16,7 @@ const Tile = styled.div`
   width: ${props => props.width || 30}px;
   height: ${props => props.height || 40}px;
   background-position: center, center;
-  background-image: url(tile-images/${props => getImg(props.tile)}.svg), url(tile-images/front.svg);
+  background-image: url(tile-images/${props => getImg(props.tile)}.svg), url(tile-images/Front.svg);
   background-repeat: no-repeat, no-repeat;
   background-size: ${props => (props.width || 30) - 2}px ${props => (props.height || 40) - 2}px,
                    cover;

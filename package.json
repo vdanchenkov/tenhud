@@ -2,16 +2,19 @@
   "name": "tenhud",
   "version": "0.0.3",
   "description": "",
-  "main": "lib/index.js",
+  "main": "modules/es6-init.js",
   "bin": {
     "tenhud": "lib/index.js"
   },
   "scripts": {
     "clean": "rimraf lib",
-    "start": "electron modules",
+    "start": "electron . -r",
     "test": "mocha ./modules/**/*.test.js -r babel-polyfill -w --compilers js:babel-register",
-    "compile": "babel -d lib modules",
-    "prepublish": "npm run clean && npm run compile"
+    "build-cache": "electron-compile --appDir . ./modules/",
+    "package": "npm run pack-mac && npm run pack-win && npm run pack-linux",
+    "pack-mac": "npm run build-cache && electron-packager . --asar --overwrite --platform=darwin --arch=x64 --icon=resources/app.icns --prune=true --out=out",
+    "pack-win": "npm run build-cache && electron-packager . Yeoman --asar  --overwrite --platform=win32 --arch=ia32 --icon=resources/app.ico --prune=true --out=out",
+    "pack-linux": "npm run build-cache && electron-packager . --asar --overwrite --platform=linux --arch=x64 --icon=resources/png.png --prune=true --out=out"
   },
   "author": "Vladimir Danchenkov <vladimir.danchenkov@gmail.com>",
   "license": "MIT",
@@ -25,6 +28,7 @@
   "dependencies": {
     "babel-polyfill": "^6.13.0",
     "babel-preset-react": "^6.16.0",
+    "electron-compile": "^5.1.2",
     "http-proxy": "^1.14.0",
     "mobx": "^3.0.0",
     "mobx-react": "^4.1.0",
@@ -43,7 +47,9 @@
     "babel-preset-stage-0": "^6.5.0",
     "bluebird": "^3.4.7",
     "chai": "^3.5.0",
-    "electron-prebuilt-compile": "^1.4.14",
+    "electron": "^1.4.15",
+    "electron-compilers": "^5.3.2",
+    "electron-packager": "^8.5.0",
     "electron-rebuild": "^1.5.5",
     "mocha": "^3.0.1",
     "rimraf": "^2.5.4"
